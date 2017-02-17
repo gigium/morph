@@ -1,0 +1,64 @@
+{"pazienti":
+  [
+    {
+      "name": "luigi",
+      "id": 1,
+      "pill": "86df4fdfggdfsd",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "rgf",
+      "id": 5,
+      "pill": "rgedfvbv",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "lfrguigi",
+      "id": 57,
+      "pill": "fbdffbvf",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "gdsrf",
+      "id": 7,
+      "pill": "sfdfbdf",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "gsdr",
+      "id": 175,
+      "pill": "grrvdbgdfg",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "pino",
+      "id": 595,
+      "pill": "grrvdbgdfg",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "pino",
+      "id": 595,
+      "pill": "grrvdbgdfg",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "pino",
+      "id": 595,
+      "pill": "grrvdbgdfg",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "pino",
+      "id": 595,
+      "pill": "grrvdbgdfg",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    },
+    {
+      "name": "pino",
+      "id": 595,
+      "pill": "grrvdbgdfg",
+      "img": "http://localhost:9292/img/cartone.jpg"
+    }
+  ]
+}

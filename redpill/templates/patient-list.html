@@ -1,0 +1,22 @@
+
+                <ul ng-if='items.length > 0'   >
+                    <li ng-repeat='item in items' class="ds" >
+                        <div class="desc">
+
+                            <div class="thumb col-md-2">
+                                <img class="img-circle" src="{{ item.img }}" width="55dpx" height="55dpx" align="">
+                            </div>
+                            <div class="col-md-1 "></div>
+                            <div class="details col-md-8 ">
+                                <h4><a ng-href='/patient/{{ item.id }}'>{{ item.name }}</a><br>
+                                    <muted>ID: {{ item.id }}</muted>
+                                </h4>
+                            </div>
+                            <div class="col-md-1 ">
+                                <button class="btn btn-round">></button>
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+

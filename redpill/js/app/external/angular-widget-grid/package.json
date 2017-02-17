@@ -1,0 +1,105 @@
+{
+  "_args": [
+    [
+      "angular-widget-grid",
+      "/home/luigi"
+    ]
+  ],
+  "_from": "angular-widget-grid@latest",
+  "_id": "angular-widget-grid@0.3.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/angular-widget-grid",
+  "_nodeVersion": "5.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-13-west.internal.npmjs.com",
+    "tmp": "tmp/angular-widget-grid-0.3.0.tgz_1457783078341_0.8051169977989048"
+  },
+  "_npmUser": {
+    "email": "npm@patrickbuergin.com",
+    "name": "patbuergin"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "angular-widget-grid",
+    "raw": "angular-widget-grid",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-widget-grid/-/angular-widget-grid-0.3.0.tgz",
+  "_shasum": "7f571a93585d2f2a3171163cb053c8d078c54396",
+  "_shrinkwrap": null,
+  "_spec": "angular-widget-grid",
+  "_where": "/home/luigi",
+  "author": {
+    "email": "hi@patrickbuergin.com",
+    "name": "Patrick Buergin",
+    "url": "https://patrickbuergin.com"
+  },
+  "bugs": {
+    "url": "https://github.com/patbuergin/angular-widget-grid/issues"
+  },
+  "dependencies": {},
+  "description": "A flexible grid layout for responsive dashboards",
+  "devDependencies": {
+    "grunt": "=0.4.5",
+    "grunt-angular-templates": "^1.0.3",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-gh-pages": "^1.0.0",
+    "grunt-karma": "=0.12.1",
+    "grunt-ng-annotate": "^2.0.1",
+    "grunt-ngdocs": "^0.2.9",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "=0.13.22",
+    "karma-jasmine": "=0.3.7",
+    "karma-phantomjs-launcher": "=1.0.0",
+    "karma-story-reporter": "=0.3.1",
+    "phantomjs-prebuilt": "^2.1.5"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "7f571a93585d2f2a3171163cb053c8d078c54396",
+    "tarball": "https://registry.npmjs.org/angular-widget-grid/-/angular-widget-grid-0.3.0.tgz"
+  },
+  "gitHead": "ea11ab5c4026fe67294a632afbe2bab84a500a21",
+  "homepage": "https://github.com/patbuergin/angular-widget-grid",
+  "keywords": [
+    "angular",
+    "dashboard",
+    "grid",
+    "layout",
+    "widget"
+  ],
+  "license": "MIT",
+  "main": "angular-widget-grid.js",
+  "maintainers": [
+    {
+      "name": "patbuergin",
+      "email": "npm@patrickbuergin.com"
+    }
+  ],
+  "name": "angular-widget-grid",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patbuergin/angular-widget-grid.git"
+  },
+  "scripts": {
+    "test": "karma start"
+  },
+  "version": "0.3.0"
+}

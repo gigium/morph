@@ -1,0 +1,14 @@
+{
+  "patient":
+    {
+      "name": "snoop",
+      "surname": "dog",
+      "img":  "http://localhost:9292/img/800px-Snoop_Dogg_2012.jpg",
+      "therapy": [{"id":1}, {"id":8}],
+      "birth_date": "20/20/20",
+      "sex": "m",
+      "country": "california ;)",
+      "address": "L.A.",
+      "notes": "lorem ipsum"
+    }
+}

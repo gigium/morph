@@ -1,0 +1,33 @@
+<h1>REGISTRATI</h1>
+<flash-message
+    duration="5000"
+
+></flash-message><div ng-switch="step">
+	<div ng-switch-when="1">
+		<input placeholder="email" class="form-control"  type="text" id="email"
+		           ng-model="email">
+		<input placeholder="password" class="form-control" type="password" id="password"
+		           ng-model="password">
+		<input placeholder="conferma password" class="form-control" type="password" id="password"
+		           ng-model="password_confirm"  class="form-control"  id="{{ error }}">
+		           <label>doctor</label>
+		<input type="checkbox" ng-model="doctor">         
+		<button ng-click="registerStepOne(email, password, password_confirm, doctor)">continua</button>  
+	</div>
+
+	<div ng-switch-when="2">
+		<input placeholder="name" class="form-control"  type="text" id="name"
+		           ng-model="name">
+		<input placeholder="surname" class="form-control" type="surname" id="surname"
+		           ng-model="surname">
+		<input placeholder="birthdate" class="form-control" type="birthdate" id="birthdate"
+		           ng-model="birthdate">	
+		<input placeholder="address" class="form-control" type="address" id="address"
+		           ng-model="address">
+		<input placeholder="birthplace" class="form-control" type="birthplace" id="birthplace"
+		           ng-model="birthplace">
+		           <label>sex</label>
+		<input type="checkbox" ng-model="sex">  
+		<button>continua</button>
+	</div>
+</div>

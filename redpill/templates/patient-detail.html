@@ -1,0 +1,36 @@
+<div class="container" ng-if="!error">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-1">
+            <img class="img-circle" src="{{ patient.img }}" width="80dpx " height="80dpx" alt="">
+        </div>
+        <div class="col-md-2">
+            <h2>{{ patient.name }} {{ patient.surname }}</h2>
+            <h3>{{ patient.birth_date }} {{ patient.address }}</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2">
+            <ul>
+                <li ng-repeat="t in patient.therapy">
+                    <p> terapia ID: {{ t.id }} </p>
+                    <button class="btn" ng-click="mod = !mod; modify(t.id)">modifica terapia</button>
+                    <h1 ng-show="mod"> sto modificando</h1>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-1">
+            <button class="btn btn-round">+</button>
+        </div>
+    </div>
+
+</div>
+<div class="container" ng-if="error">
+    <h1>ooooops there's been an error</h1>
+</div>

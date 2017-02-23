@@ -73,6 +73,9 @@ class ProfilesTable extends Table
             ->notEmpty('sex');
 
         $validator
+            ->allowEmpty('profile_picture');
+
+        $validator
             ->integer('id_user')
             ->requirePresence('id_user', 'create')
             ->notEmpty('id_user');

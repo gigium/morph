@@ -36,6 +36,10 @@
             <td><?= h($profile->sex) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Profile Picture') ?></th>
+            <td><?= h($profile->profile_picture) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($profile->id) ?></td>
         </tr>

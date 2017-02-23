@@ -4,19 +4,13 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Profile Entity
+ * Pilldispenser Entity
  *
  * @property int $id
- * @property string $name
- * @property string $surname
- * @property \Cake\I18n\Time $birthdate
- * @property string $address
- * @property string $birthplace
- * @property string $sex
- * @property string $profile_picture
+ * @property string $code
  * @property int $id_user
  */
-class Profile extends Entity
+class Pilldispenser extends Entity
 {
 
     /**

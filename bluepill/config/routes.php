@@ -46,6 +46,7 @@ Router::prefix('api', function ($routes) {
     $routes->extensions(['json', 'xml']);
     $routes->resources('Users');
     $routes->resources('Profiles');
+    $routes->resources('Pilldispensers');
     Router::connect('/api/users/register', ['controller' => 'Users', 'action' => 'add', 'prefix' => 'api']);
 
     $routes->fallbacks('InflectedRoute');

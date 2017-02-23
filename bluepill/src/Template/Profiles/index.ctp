@@ -21,6 +21,7 @@
                 <th scope="col"><?= $this->Paginator->sort('address') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('birthplace') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('sex') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('profile_picture') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('id_user') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -35,6 +36,7 @@
                 <td><?= h($profile->address) ?></td>
                 <td><?= h($profile->birthplace) ?></td>
                 <td><?= h($profile->sex) ?></td>
+                <td><?= h($profile->profile_picture) ?></td>
                 <td><?= $this->Number->format($profile->id_user) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $profile->id]) ?>

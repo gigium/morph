@@ -26,6 +26,7 @@
             echo $this->Form->input('address');
             echo $this->Form->input('birthplace');
             echo $this->Form->input('sex');
+            echo $this->Form->input('profile_picture');
             echo $this->Form->input('id_user');
         ?>
     </fieldset>

@@ -18,13 +18,13 @@ morpheus.factory('AuthService', function ($http, $rootScope, $cookies, $q) {
                 data: {'username': username, 'password':password},
                 headers: {'Content-Type': 'application/json', 'Accept':'application/json'}
             }).then(function successCallback(response) 
-            {
+            {   
                 defer.resolve(response.data); 
 
             }, 
             function errorCallback(response) 
             {
-
+                defer.resolve(response.data.message)
             });
 
             return defer.promise;
@@ -46,7 +46,6 @@ morpheus.factory('AuthService', function ($http, $rootScope, $cookies, $q) {
     {
 
         // set default auth header for http requests
-        $http.defaults.headers.common['Authorization'] = user.token;
         $rootScope.session =    
             {
                 logged: true,
@@ -72,7 +71,6 @@ morpheus.factory('AuthService', function ($http, $rootScope, $cookies, $q) {
     AuthService.ClearCredentials  = function  ()
     {
         $rootScope.session = {logged:false, current_user:{}}
-        $http.defaults.headers.common.Authorization = '';
     };
 
 
@@ -99,6 +97,7 @@ morpheus.factory('AuthService', function ($http, $rootScope, $cookies, $q) {
         return $rootScope.session;
     }
 
+
     AuthService.isDoctor = function(id, token)
     {
         var defer = $q.defer();
@@ -118,6 +117,93 @@ morpheus.factory('AuthService', function ($http, $rootScope, $cookies, $q) {
           return defer.promise;
 
     }
+
+
+    AuthService.registerUser = function(email, password, doctor)
+    {
+        var defer = $q.defer();
+        $http({
+                method: 'POST',
+                url: '/bluepill/api/users/register',
+                data: {'username': email, 'password':password, 'doctor':doctor},
+                headers: {'Content-Type': 'application/json', 'Accept':'application/json'}
+            }).then(function successCallback(response) 
+            {
+                defer.resolve(response.data); 
+
+            }, 
+            function errorCallback(response) 
+            {
+
+            });
+
+            return defer.promise;
+                 
+    };
+
+
+    AuthService.registerProfile = function(token, name, surname, birthdate, address, birthplace, sex, id_user)
+    {
+        var defer = $q.defer();
+        $http({
+                method: 'POST',
+                url: '/bluepill/api/profiles',
+                data: {
+                        "name": name,
+                        "surname": surname,
+                        "birthdate": birthdate,
+                        "address": address, 
+                        "birthplace": birthplace,
+                        "sex": sex,
+                        "id_user": id_user
+                      },
+                headers: {
+                            'Content-Type': 'application/json',
+                            'Accept':'application/json',
+                            'Authorization':token
+                         }
+            }).then(function successCallback(response) 
+            {
+                defer.resolve(response.data); 
+
+            }, 
+            function errorCallback(response) 
+            {
+
+            });
+
+            return defer.promise;
+    }
+
+
+
+    AuthService.activatePillDispenser = function(token, pillcode, id_user)
+    {
+        var defer = $q.defer();
+        $http({
+                method: 'POST',
+                url: '/bluepill/api/pilldispensers/activatepilldispenser/' + pillcode,
+                data: {
+                        "id_user": id_user
+                      },
+                headers: {
+                            'Content-Type': 'application/json',
+                            'Accept':'application/json',
+                            'Authorization':token
+                         }
+            }).then(function successCallback(response) 
+            {
+                defer.resolve(response.data); 
+
+            }, 
+            function errorCallback(response) 
+            {
+
+            });
+
+            return defer.promise;
+    }
+
 
     return AuthService
 });

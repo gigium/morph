@@ -5,13 +5,21 @@ angular.module('login', []).
     {
     templateUrl: '/redpill/templates/login.html',
     controller:
-        function ($scope, AuthService, $window)
+        function ($scope, AuthService, $window, Flash)
         {
 
-            if(AuthService.isAuthenticated())$window.location.assign('/home');;
-            (function initController() {
+//uso funzione perchè refresha più velocemente per qualche motivo
+            $scope.is_logged = function ()
+            {
+                return AuthService.isAuthenticated();
+            };
+
+            (function initController() 
+            {
                 // reset login status
                 AuthService.ClearCredentials();
+
+
             })();
 
             $scope.login = function (username, password)
@@ -25,16 +33,21 @@ angular.module('login', []).
                         is_doc
                         .then(function(doctor)
                             {
-                                AuthService.SetCredentials(response.data, doctor)
+                                AuthService.SetCredentials(response.data, doctor);
+                                $scope.login_success = true;
+
                                 $window.location.assign('/home');
                             });
                     } else 
                     {
-                        //FlashService.Error(response.message);
-                          $scope.login_success = false;
+                        Flash.create('danger', "<strong>ERRORE!</strong> " + response);
                     }
                 });
+
             }
+
+
+
         }
 })
 

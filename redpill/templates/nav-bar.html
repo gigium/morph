@@ -4,19 +4,20 @@
       *********************************************************************************************************************************************************** -->
       <!--header start-->
       <header class="header black-bg">
-              <div ng-click="toggle()" class="sidebar-toggle-box navbar-toggle collapsed col-md-2">
+           
+              <div ng-click="toggle()" class="sidebar-toggle-box navbar-toggle collapsed col-md-2" ng-show="is_logged()" >
                 <div  class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-
               </div>
             <!--logo start-->
             <a href="/home" class="logo col-md-2"><b>MORPHEUS</b></a>
             <!--logo end-->
 
-            <div class="top-menu">
+            <div class="top-menu" ng-show="is_logged()">
                 <ul class="nav pull-right top-menu">
                     <li><a class="logout" ng-click="logout()">Logout</a></li>
                 </ul>
             </div>
+
         </header>
       <!--header end-->
       
@@ -24,46 +25,49 @@
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse collapse navbar-collapse">
-              <!-- sidebar menu start-->
+      <div ng-show="is_logged()">
+        <aside>
+            <div id="sidebar"  class="nav-collapse collapse navbar-collapse">
+                <!-- sidebar menu start-->
 
-              <ul class="sidebar-menu" id="nav-accordion">
-                              <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                  <h5 class="centered">Marcel Newman</h5>
-                 <div ng-repeat="item in items">
-                   
-                    <li>
-                        <a ng-class="" href="{{item.path}}">
-                            <span>{{item.tag}}</span>
-                        </a>
-                    </li>
-                    </div>
+                <ul class="sidebar-menu" id="nav-accordion">
+                                <p class="centered"><a href=""><img src="{{ basic_profile.picture }}" class="circular--square" width="80" height="80"></a></p>
+
+                    <h5 class="centered" style="text-transform: uppercase;">{{ basic_profile.name }} {{ basic_profile.surname }}</h5>
+                   <div ng-repeat="item in items">
+                     
+                      <li>
+                          <a ng-class="{'selected-menu': selected(item.path)}" href="{{item.path}}">
+                              <span>{{item.tag}}</span>
+                          </a>
+                      </li>
+                      </div>
+                  </ul>
+
+
                 </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
 
 
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
+        <aside ng-show="showgraphSidebar">
+            <div   tabindex="5000" style="overflow: hidden; outline: none; margin-left: 0px;">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion" style="display: block;">
+                                  <div ng-repeat="item in items">
+                     
+                      <li>
+                          <a ng-class="" href="{{item.path}}">
+                              <span>{{item.tag}}</span>
+                          </a>
+                      </li>
+                      </div>
 
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
 
-      <aside ng-show="showgraphSidebar">
-          <div   tabindex="5000" style="overflow: hidden; outline: none; margin-left: 0px;">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion" style="display: block;">
-                                <div ng-repeat="item in items">
-                   
-                    <li>
-                        <a ng-class="" href="{{item.path}}">
-                            <span>{{item.tag}}</span>
-                        </a>
-                    </li>
-                    </div>
-
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      </section>
+  </div>
+</section>

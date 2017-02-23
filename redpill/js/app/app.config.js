@@ -10,10 +10,16 @@ angular.module('morpheus').
         })
     $routeProvider.
         when("/", {
+            template: "<a href='/register'>registrati</a> o <a href='/login'>loggati</a>"
+        }).
+        when("/login", {
             template: "<login></login>"
         }).
         when("/register", {
             template: "<register></register>"
+        }).
+        when("/loading/:id", {
+           template: "<loading></loading>"
         }).
         when("/home", {
             template: "<dashboard></dashboard>",
@@ -49,14 +55,24 @@ function run(AuthService ,$rootScope, $location, $http)//$cookies
             }
         });
     }*/
-morpheus.run(function(AuthService,$rootScope, $location)
+
+
+
+morpheus.run(function(AuthService,$rootScope, $location, NOT_LOGGED_PATHS)
 {
-  
-  
- $rootScope.$on("$locationChangeSuccess", function()
+
+ $rootScope.$on("$routeChangeStart", function()
         {
-            console.log("change");
-            if(!AuthService.isAuthenticated())$location.path("/");
+            console.log();
+            if(
+              !AuthService.isAuthenticated() 
+                && 
+                !(
+                  NOT_LOGGED_PATHS.LOGIN == $location.path() 
+                  ||  $location.path() == "/" 
+                  || $location.path() == NOT_LOGGED_PATHS.REGISTER
+                )
+              )$location.path("/").replace();
             
             // redirect to login page if not logged in and trying to access a restricted page
          /*   if (AuthService.isAuthenticated()) {

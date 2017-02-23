@@ -59,10 +59,13 @@
     <script src='/redpill/js/app/register/register.component.js' ></script>
 
     <script src='/redpill/js/app/services/auth.js' ></script>
+    <script src='/redpill/js/app/services/ProfileService.js' ></script>
+
    <!-- <script src='/redpill/js/app/services/UserService.js' ></script>-->
 
 
     <script src='/redpill/js/app/constants/patient_menu.js' ></script>
+    <script src='/redpill/js/app/constants/not_logged_paths.js' ></script>   
 
     <script src='/redpill/js/app/constants/doc_menu.js' ></script>   
   
@@ -70,12 +73,16 @@
 
   </head>
   <body ng-app='morpheus'>
-  <!--<nav-bar></nav-bar>-->
-
-
+  <nav-bar ng-show="!loading"></nav-bar>
   <!-- tag personalizzato , visualizza pagine(  ) con un dato template -->
+  <section class="wrapper" ng-show="!loading">
+    <div ng-view></div>  
+  </section>
+  
+  <div ng-show="loading">
+    <h1>loading stuff</h1>
+  </div>
 
-  <div ng-view></div>
   </body>
 </html>
 

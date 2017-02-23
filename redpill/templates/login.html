@@ -1,6 +1,35 @@
+<flash-message
+	    duration="5000"
+></flash-message>
+<br>
 
-<input placeholder="username" class="form-control"  type="text" id="username"
-           ng-model="username">
-<input placeholder="password" class="form-control" type="password" id="password"
-           ng-model="password">
-<button class="btn btn-default" ng-click="login(username,password)">Login</button>
+<div id="login-page" ng-if="!is_logged()">
+	<div class="container" >
+		<form class="form-login" ng-submit="login(username,password)">
+			
+			<h2 class="form-login-heading">accedi per continuare su morpheus</h2>
+			<div class="login-wrap">
+				
+				<input placeholder="inserisci la tua e-mail" class="form-control"  type="text" id="username"
+				           ng-model="username" autofocus="true">
+				           <br>
+				<input placeholder="inserisci la tua password" class="form-control" type="password" id="password"
+				           ng-model="password">
+		      
+				<br><br>
+
+				<button class="btn btn-theme btn-block">Accedi</button>
+				<br>
+		        <div class="registration">
+		        Non hai ancora un account?<br/>
+		                <a class="" href="/register">
+		                    crealo subito
+		                </a>
+		        </div>
+
+			</div>
+
+		</form>
+	</div>
+</div>
+

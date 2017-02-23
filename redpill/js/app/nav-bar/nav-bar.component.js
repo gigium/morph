@@ -5,11 +5,29 @@ angular.module('navBar', []).
     {
     templateUrl: '/redpill/templates/nav-bar.html',
     controller:
-    function ($scope, $window, DOC_MENU, PATIENT_MENU, AuthService)
+    function ($location, $scope, $window, DOC_MENU, PATIENT_MENU, AuthService, ProfileService)
     {
 
-        var user = AuthService.getSession();
+        (function initController() 
+        {
+            $scope.user = AuthService.getSession();
+            ProfileService.getBasicInfo($scope.user.current_user.userId, $scope.user.current_user.token)
+            .then(function(response)
+            {
+                $scope.basic_profile = response.data;//mettere anche nomwe e cognome e se immagine non esiste mettere immagine omino 
+            })
 
+        })();
+        
+
+        $scope.selected = function(path)
+        {
+            return path == $location.path();
+        }
+        $scope.is_logged = function()
+        {
+            return AuthService.isAuthenticated();
+        }
 
         $scope.logout = function()
         {
@@ -28,8 +46,8 @@ angular.module('navBar', []).
 
 
     	$scope.items = {}
-        console.log(user);
-    	if (user.current_user['doctor']){$scope.items = DOC_MENU}else{$scope.items = PATIENT_MENU}
+        //mettere in una funzione per caricamento più veloce
+        if ($scope.user.current_user['doctor']){$scope.items = DOC_MENU}else{$scope.items = PATIENT_MENU}
 
 
     }

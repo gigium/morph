@@ -1,33 +1,256 @@
-<h1>REGISTRATI</h1>
-<flash-message
-    duration="5000"
+<div class="registration-form registration">
+	<h1>REGISTRATI</h1>
+	<flash-message
+	    duration="5000"
+	></flash-message>
+	<br>
 
-></flash-message><div ng-switch="step">
-	<div ng-switch-when="1">
-		<input placeholder="email" class="form-control"  type="text" id="email"
-		           ng-model="email">
-		<input placeholder="password" class="form-control" type="password" id="password"
-		           ng-model="password">
-		<input placeholder="conferma password" class="form-control" type="password" id="password"
-		           ng-model="password_confirm"  class="form-control"  id="{{ error }}">
-		           <label>doctor</label>
-		<input type="checkbox" ng-model="doctor">         
-		<button ng-click="registerStepOne(email, password, password_confirm, doctor)">continua</button>  
-	</div>
+	<!--aggiustare tutto il form con validazioni varie-->
 
-	<div ng-switch-when="2">
-		<input placeholder="name" class="form-control"  type="text" id="name"
-		           ng-model="name">
-		<input placeholder="surname" class="form-control" type="surname" id="surname"
-		           ng-model="surname">
-		<input placeholder="birthdate" class="form-control" type="birthdate" id="birthdate"
-		           ng-model="birthdate">	
-		<input placeholder="address" class="form-control" type="address" id="address"
-		           ng-model="address">
-		<input placeholder="birthplace" class="form-control" type="birthplace" id="birthplace"
-		           ng-model="birthplace">
-		           <label>sex</label>
-		<input type="checkbox" ng-model="sex">  
-		<button>continua</button>
+	<div ng-switch="step">
+
+<!-- **********************************************************************************************************************************************************
+	PRIMO FORM DI REGISTRAZIONE (email e password);
+********************************************************************************************************************************************************** -->
+		<div ng-switch-when="1" >
+			
+			<form name="step_one" ng-submit="registerStepOne(email, password, password_confirm, doctor)" >
+				
+
+<!--===============================e-mail field ===============================================-->				
+				<span ng-if="email_info_show  && step_one.email.$invalid && !email">
+				    	email deve essere del tipo example@me.com
+				</span> 
+
+				<div class="form-group has-feedback" 
+					ng-class="{ 
+								'has-error' : 
+									(step_one.email.$invalid && step_one.$submitted && !email)
+									||(!email && step_one.$submitted),
+								'has-success' : step_one.email.$valid && step_one.email.$dirty && email
+								}">
+				    
+
+				    <input type="email" class="form-control" name="email" 
+				    	placeholder="Inserisci email"
+				    	ng-model="email" 
+				    	ng-focus="email_info_show = true" 
+				    	ngRequired />
+
+				    <span class="glyphicon glyphicon-ok form-control-feedback" 
+				    	ng-show="step_one.email.$valid && step_one.email.$dirty && email">
+					</span>
+
+				    <span class="glyphicon glyphicon-remove form-control-feedback"
+				    	ng-show="step_one.email.$invalid && step_one.email.$touched && !email">
+				    </span>
+
+				</div>
+
+<!--===============================password field ===============================================-->	
+				<span ng-if="password_info_show  && step_one.password.$invalid && !password">
+				    	la password dev'essere lunga almeno 8 caratteri
+				</span> 
+				
+				<div class="form-group has-feedback" 
+					ng-class="{  
+								'has-error' : 
+									(step_one.password.$invalid && step_one.password.$touched && !password)
+									||(step_one.$submitted && !password),
+								'has-success' : 
+									step_one.password.$valid && step_one.password.$dirty && password
+								}">
+				    
+
+				    <input type="password" class="form-control" name="password" 
+				    	ng-minlength="8"
+				    	placeholder="Inserisci password"
+				    	ng-model="password" 
+				    	ng-focus="password_info_show = true" 
+				    	ngRequired />
+
+				    <span class="glyphicon glyphicon-ok form-control-feedback" 
+				    	ng-show="step_one.password.$valid && step_one.password.$dirty && password">
+					</span>
+
+				    <span class="glyphicon glyphicon-remove form-control-feedback"
+				    	ng-show="step_one.password.$invalid && step_one.password.$touched && !password">
+				    </span>
+
+				</div>
+
+
+<!--===============================confirm password field ===============================================-->	
+				<span ng-if="password_confirm_info_show  && password_confirm!=password && !password_confirm">
+				    	inserire nuovamente la password
+				</span> 
+
+				<div class="form-group has-feedback" 				
+					 ng-class="{ 								 
+					 				'has-error' : 
+					 							(password_confirm != password && step_one.password_confirm.$touched)
+					 							||(step_one.$submitted && !password_confirm) ,
+
+					 				'has-success': step_one.password_confirm.$dirty 
+					 								&& password_confirm == password
+					 								&& password_confirm
+					 			}">
+
+				    <input type="password" class="form-control" name="password_confirm" 
+				    	ng-minlength="8"
+				    	placeholder="Conferma password"
+				    	ng-model="password_confirm" 
+				    	ng-focus="password_confirm_info_show = true" 
+				    	ngRequired />
+
+				    <span class="glyphicon glyphicon-ok form-control-feedback" 
+				    	ng-show="step_one.password_confirm.$dirty && password_confirm == password && password_confirm">
+					</span>
+
+				    <span class="glyphicon glyphicon-remove form-control-feedback"
+				    	ng-show="password_confirm != password && step_one.password_confirm.$touched">
+				    </span>
+
+				     
+				</div>
+
+<!--===============================doctor(true/false) field ===============================================-->	
+				<div class="form-group centered" default="false">
+					<label class="radio-form-align">
+						<input type="radio" ng-model="doctor" ng-value="true" name="doctortrue">
+					Sono un medico 
+					</label>
+		
+					<label class="radio-form-align">
+						<input type="radio" ng-model="doctor" ng-value="false" name="doctorfalse" >
+					Sono un paziente 
+					</label>
+			 	</div>
+				<div class="row centered">
+					<h4 ng-class="{'col-sm-12': doctor}" ng-show="doctor">
+						Registrami come medico 
+					</h4>
+					<h4 ng-class="{'col-sm-12': !doctor}" ng-show="!doctor">
+						Registrami come paziente
+					</h4>
+				</div> 
+
+
+				<button class="btn btn-theme btn-block">continua</button>  
+			</form>
+		</div>
+<!-- **********************************************************************************************************************************************************
+	FINE->>PRIMO FORM DI REGISTRAZIONE (email e password);
+********************************************************************************************************************************************************** -->
+
+
+<!-- **********************************************************************************************************************************************************
+	SECONDO FORM DI REGISTRAZIONE (anagrafiche);
+********************************************************************************************************************************************************** -->
+
+
+		<div ng-switch-when="2">
+			<form name="step_two" ng-submit="registerStepTwo(name, surname, birthdate, address, birthplace, sex)">
+
+				<div class="form-group" 
+					ng-class="{'has-error' : !name && step_two.$submitted }" >
+					<label ng-show="!name && step_two.$submitted" style="color:red;">*</label>
+					<input placeholder="Inserisci nome" class="form-control"  type="text" id="name"
+					         ng-model="name" ngRequired>
+				</div>
+
+				<div class="form-group"
+					ng-class="{'has-error' : !surname && step_two.$submitted }" >	
+					<label ng-show="!surname && step_two.$submitted" style="color:red;">*</label>       
+					<input placeholder="Inserisci cognome" class="form-control" type="text" id="surname"
+					           ng-model="surname" ngRequired>
+				</div>	
+
+				<div class="form-group form-inline"					
+					ng-class="{'has-error' : !birthdate && step_two.$submitted }" >	
+					
+					<label ng-show="!birthdate && step_two.$submitted" style="color:red;">*</label>   
+		
+
+					<div class="row centered form-group-xs">     
+
+						<div class="col-xs-3">
+							<label for="day">Inserire data di nascita: </label>    
+				 		</div>
+
+				 		<div  class="col-xs-1  birthdate-form">
+				 			<input placeholder="gg" type="text" name="day" class="form-control" ng-model="birthdate.day" 
+				 			style="width: 40px;">
+				 		</div>
+				 		
+				 		<div class="col-xs-1  birthdate-form">
+				 			<input placeholder="mm" type="text" name="month" class="form-control" ng-model="birthdate.month"
+				 			style="width: 40px;">
+				 		</div>
+				 		
+				 		<div class="col-xs-1  birthdate-form">
+				 			<input placeholder="aaaa" type="text" name="year" class="form-control" ng-model="birthdate.year"
+				 			style="width: 80px;">
+			 			</div>
+			 		</div>
+				</div>	 
+
+				<div class="form-group"
+					ng-class="{'has-error' : !address && step_two.$submitted }" >	
+					<label ng-show="!address && step_two.$submitted" style="color:red;">*</label>  
+					<input placeholder="Inserisci residenza" class="form-control" type="address" id="address"
+					           ng-model="address" ngRequired>
+				</div>
+				
+				<div class="form-group"
+					ng-class="{'has-error' : !address && step_two.$submitted }" >	
+					<label ng-show="!address && step_two.$submitted" style="color:red;">*</label>  
+					<input placeholder="Inserisci luogo di nascita" class="form-control" type="birthplace" id="birthplace"
+					           ng-model="birthplace" ngRequired>
+				</div>
+
+				<div class="form-group">	
+					<label for="sex">Sesso : </label><label ng-show="!sex && step_two.$submitted" style="color:red;">*</label>
+					<select name="singleSelect" id="singleSelect" ng-model="sex">
+					    <option value="m">M</option> 
+					    <option value="f">F</option>
+					</select><br>  
+				</div>
+
+				<button  class="btn btn-theme btn-block"> 
+					continua
+				</button>
+
+			</form>
+		</div>
+
+<!-- **********************************************************************************************************************************************************
+	FINE->>SECONDO FORM DI REGISTRAZIONE (anagrafiche);
+********************************************************************************************************************************************************** -->
+
+
+<!-- **********************************************************************************************************************************************************
+	TERZO FORM DI REGISTRAZIONE (PILLCODE);
+********************************************************************************************************************************************************** -->
+
+		<div ng-switch-when="3">
+			<form name="step_three" ng-submit="registerStepThree(pillcode)">
+				<div class="form-group" 
+					ng-class="{'has-error' : !pillcode && step_three.$submitted }" >
+					<label ng-show="!pillcode && step_three.$submitted" style="color:red;">inserisci il codice per continuare</label>
+					<label for="pillcode">Inserisci il tuo codice pill dispenser MORPHEUS</label>
+					<input placeholder="xxxx-xxxx-xxxx" class="form-control"  type="text" id="pillcode"
+					         ng-model="pillcode" ngRequired>
+				</div>
+				<button  class="btn btn-theme btn-block"> 
+					Completa registrazione
+				</button>
+			</form>
+		</div>
+
+
+<!-- **********************************************************************************************************************************************************
+	FINE->>TERZO FORM DI REGISTRAZIONE (PILLCODE);
+********************************************************************************************************************************************************** -->
 	</div>
 </div>

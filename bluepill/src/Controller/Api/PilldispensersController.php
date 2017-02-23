@@ -21,7 +21,7 @@ class PilldispensersController extends AppController
 
 
     
-        $pilldispenser =   $this->Pilldispensers->find("all")->where('code = '.$code)->first();
+        $pilldispenser = $this->Pilldispensers->find("all")->where('code = '.$code)->first();
         $pilldispenser = $this->Pilldispensers->patchEntity($pilldispenser, $this->request->data);
         if ($this->Pilldispensers->save($pilldispenser)) 
            $this->set(['success' => true, 'data' => ['pill' => $pilldispenser], '_serialize' => ['success', 'data']]);

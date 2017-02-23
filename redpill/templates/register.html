@@ -1,5 +1,5 @@
 <div class="registration-form registration">
-	<h1>REGISTRATI</h1>
+
 	<flash-message
 	    duration="5000"
 	></flash-message>
@@ -8,7 +8,7 @@
 	<!--aggiustare tutto il form con validazioni varie-->
 
 	<div ng-switch="step">
-
+			<h1 class="centered" ng-show="step<4">REGISTRATI</h1>
 <!-- **********************************************************************************************************************************************************
 	PRIMO FORM DI REGISTRAZIONE (email e password);
 ********************************************************************************************************************************************************** -->
@@ -252,5 +252,14 @@
 <!-- **********************************************************************************************************************************************************
 	FINE->>TERZO FORM DI REGISTRAZIONE (PILLCODE);
 ********************************************************************************************************************************************************** -->
+		<div ng-switch-when="4">
+			<h1 class="centered">REGISTRAZIONE COMPLETATA </h1>
+				<button  class="btn btn-theme btn-block" ng-click="registerStepFour()"> 
+					Accedi per usare MORPHEUS
+				</button>
+		</div>
+
+
+
 	</div>
 </div>

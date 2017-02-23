@@ -5,7 +5,7 @@ angular.module('register', []).
     {
     templateUrl: '/redpill/templates/register.html',
     controller:
-    function ($scope, AuthService, Flash)
+    function ($scope, AuthService, Flash, $location)
     {
         
         $scope.step = 1; 
@@ -83,7 +83,6 @@ angular.module('register', []).
                 {
                     if(response.success)
                     {    
-                        Flash.create('warning', "saaaaaaaaaaaaaaa")
                         $scope.step+=1;
                     }
                     else
@@ -97,6 +96,12 @@ angular.module('register', []).
                 Flash.create('danger', '<strong>ERRORE!</strong> ci sono uno o più campi vuoti');
             }
             
+        }
+
+
+        $scope.registerStepFour = function()
+        {
+            $location.path('/login').replace();
         }
 
 

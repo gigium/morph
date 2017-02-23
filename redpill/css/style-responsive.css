@@ -21,11 +21,9 @@
 
 @media (max-width: 768px) {
 
-    .logo {
-        position: center !important;
+    body {
+        width:100% !important;
     }
-
-
 
 }
 
